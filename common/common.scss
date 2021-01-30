@@ -1,0 +1,46 @@
+.loading-indicator-container {
+  position: fixed;
+  top: 0;
+  z-index: z("header") + 1;
+
+  height: 2px;
+  width: 100%;
+
+  opacity: 0;
+  transition: opacity 0.4s ease 0.4s;
+
+  .loading-indicator {
+    height: 100%;
+    width: 100%;
+    animation: loading-indicator-end 0.4s;
+    background-color: var(--quaternary);
+  }
+
+  &.loading {
+    opacity: 1;
+    transition: opacity 0s;
+
+    .loading-indicator {
+      width: 25%;
+      animation: loading-indicator-start 0.4s;
+    }
+  }
+}
+
+@keyframes loading-indicator-start {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 20%;
+  }
+}
+
+@keyframes loading-indicator-end {
+  0% {
+    width: 20%;
+  }
+  100% {
+    width: 100%;
+  }
+}
