@@ -10,11 +10,13 @@
   opacity: 0;
   transition: opacity 0.4s ease 0.4s;
 
+  background-color: var(--primary-low);
+
   .loading-indicator {
     height: 100%;
     width: 100%;
     animation: loading-indicator-end 0.4s;
-    background-color: var(--quaternary);
+    background-color: var(--tertiary);
   }
 
   &.loading {
