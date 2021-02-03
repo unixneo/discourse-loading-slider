@@ -1,6 +1,7 @@
 .loading-indicator-container {
   position: fixed;
   top: 0;
+  left: 0;
   z-index: z("header") + 1;
 
   height: 2px;
