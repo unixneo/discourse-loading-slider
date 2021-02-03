@@ -28,4 +28,15 @@ export default apiInitializer("0.8", (api) => {
       this.queueRerender();
     },
   });
+
+  api.modifyClass("component:topic-list-item", {
+    // Core updates the header with topic information as soon as a topic-list-item is clicked
+    // This feels a little weird when the body is still showing old post content, so disable
+    // that behavior.
+    navigateToTopic(topic, href) {
+      // this.appEvents.trigger("header:update-topic", topic); // This is the core line we're removing
+      DiscourseURL.routeTo(href || topic.get("url"));
+      return false;
+    },
+  });
 });
