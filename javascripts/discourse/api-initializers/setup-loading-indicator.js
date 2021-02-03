@@ -2,6 +2,7 @@ import { apiInitializer } from "discourse/lib/api";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { observes } from "discourse-common/utils/decorators";
+import DiscourseURL from "discourse/lib/url";
 
 export default apiInitializer("0.8", (api) => {
   delete Ember.TEMPLATES["loading"];
