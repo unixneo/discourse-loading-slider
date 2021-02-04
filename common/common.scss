@@ -1,4 +1,12 @@
 .loading-indicator-container {
+  --loading-duration: 5s;
+  --loading-function: cubic-bezier(0, 0, 0, 1);
+
+  --done-duration: 0.4s;
+  --done-function: ease;
+
+  --fade-out-duration: 0.4s;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -8,42 +16,29 @@
   width: 100%;
 
   opacity: 0;
-  transition: opacity 0.4s ease 0.4s;
+  transition: opacity var(--fade-out-duration) ease var(--done-duration);
 
   background-color: var(--primary-low);
 
   .loading-indicator {
     height: 100%;
     width: 100%;
-    animation: loading-indicator-end 0.4s;
+    width: 0%;
     background-color: var(--tertiary);
   }
 
   &.loading {
     opacity: 1;
     transition: opacity 0s;
+  }
 
-    .loading-indicator {
-      width: 20%;
-      animation: loading-indicator-start 0.4s;
-    }
+  &.loading .loading-indicator {
+    transition: width var(--loading-duration) var(--loading-function);
+    width: 80%;
   }
-}
 
-@keyframes loading-indicator-start {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 20%;
-  }
-}
-
-@keyframes loading-indicator-end {
-  0% {
-    width: 20%;
-  }
-  100% {
+  &.done .loading-indicator {
+    transition: width var(--done-duration) var(--done-function);
     width: 100%;
   }
 }
