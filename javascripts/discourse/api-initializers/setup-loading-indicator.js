@@ -52,4 +52,19 @@ export default apiInitializer("0.8", (api) => {
   if (isAppWebview()) {
     document.body.classList.add("discourse-hub-webview");
   }
+
+  // Remove the custom refresh implementation and use the router
+  api.modifyClass("controller:discovery/topics", {
+    @action
+    refresh() {
+      this.send("triggerRefresh");
+    },
+  });
+
+  api.modifyClass("route:discovery", {
+    @action
+    triggerRefresh() {
+      this.refresh();
+    },
+  });
 });
