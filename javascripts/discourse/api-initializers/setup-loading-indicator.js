@@ -4,6 +4,7 @@ import { inject as service } from "@ember/service";
 import { observes } from "discourse-common/utils/decorators";
 import DiscourseURL from "discourse/lib/url";
 import { set } from "@ember/object";
+import { isAppWebview } from "discourse/lib/utilities";
 
 export default apiInitializer("0.8", (api) => {
   delete Ember.TEMPLATES["loading"];
@@ -47,4 +48,8 @@ export default apiInitializer("0.8", (api) => {
       // no-op. We don't want the loading spinner to show on the discovery routes any more
     },
   });
+
+  if (isAppWebview()) {
+    document.body.classList.add("discourse-hub-webview");
+  }
 });
