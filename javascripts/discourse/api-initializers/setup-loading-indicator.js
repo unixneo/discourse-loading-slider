@@ -3,6 +3,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { observes } from "discourse-common/utils/decorators";
 import DiscourseURL from "discourse/lib/url";
+import { set } from "@ember/object";
 
 export default apiInitializer("0.8", (api) => {
   delete Ember.TEMPLATES["loading"];
@@ -38,6 +39,12 @@ export default apiInitializer("0.8", (api) => {
       // this.appEvents.trigger("header:update-topic", topic); // This is the core line we're removing
       DiscourseURL.routeTo(href || topic.get("url"));
       return false;
+    },
+  });
+
+  api.modifyClass("controller:discovery", {
+    set loading(value) {
+      // no-op. We don't want the loading spinner to show on the discovery routes any more
     },
   });
 });
