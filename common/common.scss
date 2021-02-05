@@ -1,10 +1,9 @@
 .loading-indicator-container {
-  --loading-duration: 5s;
-  --loading-function: cubic-bezier(0, 0, 0, 1);
+  --loading-width: 80%;
+  --still-loading-width: 90%;
 
+  --still-loading-duration: 10s;
   --done-duration: 0.4s;
-  --done-function: ease;
-
   --fade-out-duration: 0.4s;
 
   position: fixed;
@@ -27,18 +26,24 @@
     background-color: var(--tertiary);
   }
 
-  &.loading {
+  &.loading,
+  &.still-loading {
     opacity: 1;
     transition: opacity 0s;
   }
 
   &.loading .loading-indicator {
-    transition: width var(--loading-duration) var(--loading-function);
-    width: 80%;
+    transition: width var(--loading-duration) ease-in;
+    width: var(--loading-width);
+  }
+
+  &.still-loading .loading-indicator {
+    transition: width var(--still-loading-duration) linear;
+    width: var(--still-loading-width);
   }
 
   &.done .loading-indicator {
-    transition: width var(--done-duration) var(--done-function);
+    transition: width var(--done-duration) ease-out;
     width: 100%;
   }
 
