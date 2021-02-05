@@ -9,7 +9,6 @@ export default Component.extend({
 
   classNames: "loading-indicator-container",
   classNameBindings: ["ready", "loading", "stillLoading:still-loading", "done"],
-  attributeBindings: "style",
 
   state: "ready",
 
@@ -27,11 +26,6 @@ export default Component.extend({
     } else {
       this.set("state", "done");
     }
-  },
-
-  @discourseComputed("loadingIndicator.averageTime")
-  style(averageTime) {
-    return `--loading-duration: ${averageTime.toFixed(2)}s;`.htmlSafe();
   },
 
   didInsertElement() {

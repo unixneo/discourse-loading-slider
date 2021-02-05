@@ -20,6 +20,10 @@ export default Service.extend(Evented, {
     this.trigger("stateChanged", true);
     schedule("afterRender", () => {
       document.body.classList.add("loading");
+      document.documentElement.style.setProperty(
+        "--loading-duration",
+        `${this.averageTime.toFixed(2)}s`
+      );
     });
   },
 

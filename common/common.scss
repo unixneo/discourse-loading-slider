@@ -63,4 +63,5 @@ body #main-outlet {
 
 body.loading #main-outlet {
   opacity: 0.2;
+  transition: opacity var(--loading-duration) ease;
 }
